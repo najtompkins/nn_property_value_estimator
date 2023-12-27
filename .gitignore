@@ -1,3 +1,5 @@
 .DS_Store
 /old_nn_model_code
 /redfin_testing_scripts
+addresses_cleaned.csv
+interaction.ipynb
