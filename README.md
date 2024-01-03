@@ -1,12 +1,7 @@
 # Property_Value_NN_Estimator
-### _Note, any .ipynb in this repo that uses the tensor-flow or keras-tuner library was processed in Google Colab_
 
 ## Project Overview
-The development process of this neural network model included 4 team members. The model, located in the [models](models/) directory as either an H5 or Keras filetype, was trained to predict the value of **single family homes in Dallas, TX** by evaluating features such as 1) number of bedrooms, 2) square footage, 3) zip code, etc.
-
-### Results
-#### PULL IMAGES FROM THE GOOGLE SLIDES FILE
-##### https://docs.google.com/presentation/d/1ZFXWJKJN3-PoUnpL__Gys1JQMzztjaONkHsKJBH1v6c/edit#slide=id.g1ec42e7cc60_2_2
+The development process of this neural network model included 4 team members, credited below. This model was trained to predict the value of **single family homes in Dallas, TX** by evaluating features such as 1) number of bedrooms, 2) square footage, 3) zip code, etc, features gathered from [Redfin.com](https://www.redfin.com). The model is available for download in the [models](models/) directory as an .H5 or .Keras filetype.
 
 ### Team Members: <br> 
 **Martin Bedino**: GitHub: [mbedino99](https://github.com/mbedino99) <br>
@@ -15,7 +10,11 @@ The development process of this neural network model included 4 team members. Th
 **Nathan-Andrew Tompkins (self)**: GitHub: [najtompkins](https://github.com/najtompkins) <br>
 
 *Note:*<br>
-*This project was developed as part of the 2023 UCF Data Analytics and Visualization Bootcamp.*
+*This project was developed in collaboration as part of the 2023 UCF Data Analytics and Visualization Bootcamp.*
+
+### Results
+#### PULL IMAGES FROM THE GOOGLE SLIDES FILE
+##### https://docs.google.com/presentation/d/1ZFXWJKJN3-PoUnpL__Gys1JQMzztjaONkHsKJBH1v6c/edit#slide=id.g1ec42e7cc60_2_2
 
 ## Sourcing and Cleaning
 There are 3 primary sources of the data used in training this model:
