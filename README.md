@@ -20,7 +20,7 @@ This model was trained to predict the value of **single family homes in Dallas, 
 - **Accuracy** - Predictions were, on average, within 9.4% of the target estimated value.<br> ![results](images/results/actual_v_pred.png)
 - **Predictions Distribution** - Illustrates our model follows the same price/sq.ft. trend as actuals. <br> ![results](images/results/results.png)
 - **Loss** = Final Epoch. <br> ![results](images/results/epoch_100.png)
-* **e
+* **
 ### Team Members: <br> 
 **Martin Bedino**: GitHub: [mbedino99](https://github.com/mbedino99) <br>
 **David Pinsky**: GitHub: [dpinsky1](https://github.com/dpinsky1) <br>
@@ -38,10 +38,13 @@ There are 3 primary sources of the data used in training this model:
   ### Data Aquisition
   - This model is trained on Redfin housing data pulled using a list of addresses located in Dallas, TX. These addresses were sourced from the [Dallas Central Appraisal District website](https://www.dallascad.org/). This downloadable .csv was then cleaned to remove any rows with empty values. This cleaned dataset can be found [here](data/addresses_cleaned.csv).
   - All other feature data was obtained from [Redfin](redfin.com) through the Redfin Wrapper cited above. The addresses from DCAD were reformatted to be used with a wrapper to access Redfin's unlisted API. (cleaning code [here](./code/ETL_addresses.ipynb).) This wrapper allowed access to the data without violating Redfin's terms of use against webscraping. (below is an example of the wrapper's code) <br>
-  ![wrapper](images/Kaylee/wrapper_code.png) <br>
-  ![wrapper](images/Kaylee/wrapper_code_2.png)
+    <img src="images/Kaylee/wrapper_code.png" width="50%" height="50%">
+    <img src="images/Kaylee/wrapper_code_2.png" width="50%" height="50%">
+
   - The code that pulls this data is located in in the [code](./code/) directory. ([File located here](./code/redfin_data_collector.ipynb))
-    ![wrapper](images/Kaylee/api_calls_code.png)
+    <br>
+    <img src="images/Kaylee/api_calls_code.png" width="50%" height="50%">
+    
       - *Due to the extreme length of time it took to pull data using this wrapper method these API calls were  done in batches of 10,000 addresses. These were exported as .csv files to the data folder and then concatenated into the [combined_file.csv](./data/combined_file.csv).*
       - *Despite procurring a list of over 600,000 addresses, the time constraints of this project permitted data extraction for only around 40,000 homes. (Though this was more than enough to train the model.)*
     
@@ -56,9 +59,14 @@ There are 3 primary sources of the data used in training this model:
       - We found the data to be homoskedastic
       - There is no perfect linear relation between home prices and our explanatory variables
   - From this quick analysis we find a adjusted. r^2 value of 0.678, meaning there is room for improvement of the model through hyperparameter tuning.
-   <br> ![ols](images/Martin/Screenshot%202024-01-03%20at%202.42.27 PM.png)
-  <br> ![ols](images/Martin/martin_2.png)
-  <br> ![ols](images/Martin/martin_3.png)
+<div style="text-align: center;">
+<br>
+<img src="images/Martin/Screenshot%202024-01-03%20at%202.42.27 PM.png" width="50%" height="50%">
+<br>
+<img src="images/Martin/martin_2.png" width="50%" height="50%">
+<br>
+<img src="images/Martin/martin_3.png" width="50%" height="50%">
+</div>
  
 
 ## Nathan-Andrew Tompkins - Model Architecture and Tuning
@@ -69,8 +77,8 @@ There are 3 primary sources of the data used in training this model:
   - The output layer was designed to have a single output, which would be the predicted house price.
   - As this was not a classic example of a model designed to cluster or classify data and instead predict a numerical value close to the actual value, it became neccesary to find a proper loss and evaluation method.
     - Our loss function was the "Mean Absolute Percentage Error" function. This allowed for our model to test the data's accuracy within a certain percentage of the target instead of exacting values.
-    - The MAE metric was used to determine the average value that the model was off in it's pricing estimation. (Note that this value is greater than expected due to the high variance of housing prices above 2.5 million.) <br>
-    <br>   ![metrics](images/Nathan-Andrew/valuation_metrics.png)
+    - The MAE metric was used to determine the average value that the model was off in it's pricing estimation. (Note that this value is greater than expected due to the high variance of housing prices above 2.5 million.) <img src="images/Nathan-Andrew/valuation_metrics.png" width='50%' height='50%'/>
+
   - The tuner-hyperband itself is initialized using the tuning-function as the first parameter. The "objective" here is "val_loss" as the primary function of this model is to reduce the percentage error between predicted and target vales. Likewise, the model callback/checkpoint "mode" variable is looking for the minimal value of the loss function to determine which tested model performs the best.
 
 ### Final model structure
@@ -102,34 +110,46 @@ The visualizations below illustrate the accuracy of our pricing model. While the
 ### Results
 Using size and color to illustrate the prices of the homes, we can see that the while there are small differences between the actual and predicted maps, our model was trained with a satisfying degree of accuracy so that at these look largely the same.
 
-Actual Prices
-![avp](images/David/actual_view.png)
-Predicted Prices
-![avp](images/David/predicted_view.png)
+*Actual Prices*
+<br>
+<img src="images/David/actual_view.png" width='60%' height='=60%'/>
+
+*Predicted Prices*
+<br>
+<img src="images/David/predicted_view.png" width='60%' height='=60%'/>
 
 ### Data Cleaning
 Much of the data taken from Redfin included features for houses that significantly skewed some of our features. These multi-million dollar mansions included large interior and lot sizes, as well as over-represented bathroom and bedroom counts in the data. As these mansions were not in the scope of our model we elimented them from the training dataset, allowing for greater stability and accuracy in the single-family-home predictions model we devloped.
-![avp](images/David/cleaned_data.png)
+<br>
+<img src="images/David/cleaned_data.png" width='40%' height='=40%'/>
+
 
 ### Zip Code API Pulls.
 Due to the limits of this project of our data is not as securly balanced as we would have otherwise striven for. As you can see below a vast majority of addresses we accessed and trained on were pulled from the northeast districts of Dallas, or other singlulary districts around the region. Nearly all were represented, but the model is weighted heavily toward home prices in those areas.
-![avp](images/David/zip_distribution.png)
+<br>
+<img src="images/David/zip_distribution.png" width='60%' height='=60%'/>
+
 
 ### Actual vs. Predicted
 Above the line we can see the acutal house values and below the line we can see the predicted values from our model. We can see that houses below 800k are predicted with a high degree of accuracy and those above, where training data was not as available, were predicted with a lower degree of accuracy. This is the reason for the MAE value of 40564.8964. At first this metric would indicate that the average value of error in predictions is around 40K, but that number is drastically skewed due to houses with higher values in this data set. The 9.4% accuracy is the greater metric to evaluate this model due to this oddity in the MAE.
-![avp](images/David/actual_v_pred.png)
+<br>
+<img src="images/David/actual_v_pred.png" width='60%' height='=60%'/>
 
 ### Home Value Distribution - Actual
 The home value distribution for all of the API data followed a normal distribution, peaking at with over 1,500 home in the 270k price bracket.
-![avp](images/David/price_distribution.png)
+<br>
+<img src="images/David/price_distribution.png" width='60%' height='=60%'/>
 
 ### Home Value Distribution - Predicted
-The predicted home value distribution also followes a normal distribution.
-![avp](images/David/sample_distribution.png)
+The predicted home value distribution also followes a normal distribution. 
+<br>
+<img src="images/David/sample_distribution.png" width='60%' height='=60%'/>
 
 ### Proper Price Weight
 We can see that our model properly weighted the relationship between the two price/sq.ft interior features.
-![avp](images/David/proper_price_weight.png)
+<br>
+<img src="images/David/proper_price_weight.png" width='60%' height='=60%'/>
+
 
 
 # End of ReadMe.
