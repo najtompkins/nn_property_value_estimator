@@ -1,23 +1,26 @@
 # nn_property_value_estimator 
 ### Predicting Property Values by Training Neural Networks.
+Download the Keras Model [Here](models/redfin_property_estimator.keras)
 
 ## Project Overview
 <img src="images/redfin.png" align="right" width="50%" height="50%"/>
 
-The development process of this neural network model included 4 team members, credited below. This model was trained to predict the value of **single family homes in Dallas, TX** by evaluating features such as 1) number of bedrooms, 2) square footage, 3) zip code, etc, features gathered from [Redfin.com](https://www.redfin.com). The model is available for download in the [models](models/) directory as an .H5 or .Keras filetype.
+This model was trained to predict the value of **single family homes in Dallas, TX** by evaluating features such as 1) number of bedrooms, 2) square footage, 3) zip code, etc, features gathered from [Redfin.com](https://www.redfin.com). The model is available for download in the [models](models/) directory as an .H5 or .Keras filetype. The development process of this neural network model included 4 team members, credited below.
 
 *Note:*<br>
 *This project was developed in collaboration as part of the 2023 UCF Data Analytics and Visualization Bootcamp.*
 
 ### Results
 - Model metrics
-  - **loss: 9.46** Indicates that predicted housing prices are within ~9.4% of the target values. ![results](images/results/epoch_100.png)
-  - **mae: 40564.8964**. Indicates at first glance that our data, on average, is off by ~40.5k. *This is due to the high variance and low number of datapoints of houses above $1 million*. ![results](images/results/mae.png)
+  - **MAPE loss: 9.46..** Using the Mean-Absolute-Percentage-Error Loss function, we could evaluate our model based on how close it came to our target values. Our model predicts housing prices within ~9.4% of the target values. <br>
+  ![results](images/results/epoch_100.png)
+  - **mae: 40564.89..**. Indicates at first glance that our predictions, on average, are off by ~40.5k. *This is due to the high variance and low number of datapoints of houses above $1 million. Our primary metric is the above MAPE loss value.* <br>
+  ![results](images/results/mae.png)
 
-- Accuracy - Predictions were, on average, within 9.4% of the target estimated value.<br> ![results](images/results/actual_v_pred.png)
-- Predictions Distribution - Illustrates our model follows the same price/sq.ft. trend as actuals. <br> ![results](images/results/results.png)
-- Loss = Accuracy. Within 9.4% of Actual Price. <br> ![results](images/results/epoch_100.png)
-
+- **Accuracy** - Predictions were, on average, within 9.4% of the target estimated value.<br> ![results](images/results/actual_v_pred.png)
+- **Predictions Distribution** - Illustrates our model follows the same price/sq.ft. trend as actuals. <br> ![results](images/results/results.png)
+- **Loss** = Final Epoch. <br> ![results](images/results/epoch_100.png)
+* **e
 ### Team Members: <br> 
 **Martin Bedino**: GitHub: [mbedino99](https://github.com/mbedino99) <br>
 **David Pinsky**: GitHub: [dpinsky1](https://github.com/dpinsky1) <br>
@@ -70,20 +73,22 @@ There are 3 primary sources of the data used in training this model:
     <br>   ![metrics](images/Nathan-Andrew/valuation_metrics.png)
   - The tuner-hyperband itself is initialized using the tuning-function as the first parameter. The "objective" here is "val_loss" as the primary function of this model is to reduce the percentage error between predicted and target vales. Likewise, the model callback/checkpoint "mode" variable is looking for the minimal value of the loss function to determine which tested model performs the best.
 
-  ### Final model structure
+### Final model structure
 
-  <img src="images/Nathan-Andrew/nn_design.png" align="right"/>
-  <img src="images/Nathan-Andrew/nn_structure.png" align="right"/>
+  <img src="images/Nathan-Andrew/nn_design.png" align="right" width='70%' height='70%'/>
+  <img src="images/Nathan-Andrew/nn_structure.png" align="right" width='70%' height='70%'/>
 
   - Due to unexpected errors when using the best model determined by the keras-tuner, our final model uses only a few of those specifications. In the end, our model is Sequential and comprised of 4 layers:
     1. Input layer using the "relu" activaiton function
     2. Two hidden layers with 11 and 13 neurons respectively using the "linear" activation function.
-    3. Output layer using the "linear" function.
-   
-  ### Model Results
+    3. Output layer using the "linear" function. <br>
 
-  - **loss: 9.46** Indicates that predicted housing prices are within ~9.4% of the target values. ![results](images/results/epoch_100.png)
-  - **mae: 40564.8964**. Indicates at first glance that our data, on average, is off by ~40.5k. *Again, this is due to the high variance and low number of datapoints of houses above $1 million*. ![results](images/results/mae.png)
+### Model Results
+<img src="images/results/epoch_100.png" align="right" width='70%' height='70%'/>
+
+  - **loss: 9.46** Indicates that predicted housing prices are within ~9.4% of the target values.
+  - **mae: 40564.8964**. Indicates at first glance that our data, on average, is off by ~40.5k. *Again, this is due to the high variance and low number of datapoints of houses above $1 million*. <br>
+  ![results](images/results/mae.png)
   
 ## David Pinsky - Data Visualization Dashboard
 *A Tableau Public Visualization of the data can be found [here](CHANGE THIS ONCE ITS UPLOADED), or downloaded [here](redfin_training_analysis.twbx).*
