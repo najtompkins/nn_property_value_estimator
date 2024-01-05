@@ -23,7 +23,7 @@ This model was trained to predict the value of **single family homes in Dallas, 
 
 
 - **Loss** = Final Epoch. <br> ![results](images/results/epoch_100.png)
-* **
+
 ### Team Members: <br> 
 **Martin Bedino**: GitHub: [mbedino99](https://github.com/mbedino99) <br>
 **David Pinsky**: GitHub: [dpinsky1](https://github.com/dpinsky1) <br>
