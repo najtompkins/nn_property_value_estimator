@@ -1,5 +1,11 @@
+# Don't want this macos quirk in the repo
 .DS_Store
+
+# Not needed in repo
 /old_nn_model_code
 /redfin_testing_scripts
+# File too large for github
 addresses_cleaned.csv
+
+# Unused user interaction notebook with the model
 interaction.ipynb
