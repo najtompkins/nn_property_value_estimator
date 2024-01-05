@@ -18,7 +18,7 @@ This model was trained to predict the value of **single family homes in Dallas, 
   ![results](images/results/mae.png)
 
 - **Accuracy** - Predictions were, on average, within 9.4% of the target estimated value.<br> ![results](images/results/actual_v_pred.png)
-- **Predictions Distribution** - Illustrates our model follows the same price/sq.ft. trend as actuals. <br> ![results](images/results/results.png)
+- **Predictions Distribution** - Above the line are actual prices, below the line are predicted prices. Not the accuracy of anything below 800k (middle of the line) <br> ![results](images/results/results.png)
 - **Loss** = Final Epoch. <br> ![results](images/results/epoch_100.png)
 * **
 ### Team Members: <br> 
