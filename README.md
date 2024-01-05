@@ -62,14 +62,12 @@ There are 3 primary sources of the data used in training this model:
       - We found the data to be homoskedastic
       - There is no perfect linear relation between home prices and our explanatory variables
   - From this quick analysis we find a adjusted. r^2 value of 0.678, meaning there is room for improvement of the model through hyperparameter tuning.
-<div style="text-align: center;">
 <br>
 <img src="images/Martin/Screenshot%202024-01-03%20at%202.42.27 PM.png" width="50%" height="50%">
 <br>
 <img src="images/Martin/martin_2.png" width="50%" height="50%">
 <br>
 <img src="images/Martin/martin_3.png" width="50%" height="50%">
-</div>
  
 
 ## Nathan-Andrew Tompkins - Model Architecture and Tuning
