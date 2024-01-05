@@ -18,7 +18,10 @@ This model was trained to predict the value of **single family homes in Dallas, 
   ![results](images/results/mae.png)
 
 - **Accuracy** - Predictions were, on average, within 9.4% of the target estimated value.<br> ![results](images/results/actual_v_pred.png)
-- **Predictions Distribution** - Above the line are actual prices, below the line are predicted prices. Not the accuracy of anything below 800k (middle of the line) <br> ![results](images/results/results.png)
+- **Predictions Distribution** - Above the line are actual prices, below the line are predicted prices. Not the accuracy of anything below 800k (middle of the line)
+  <br>     <img src="images/results/results.png" width="50%" height="50%">
+
+
 - **Loss** = Final Epoch. <br> ![results](images/results/epoch_100.png)
 * **
 ### Team Members: <br> 
@@ -99,7 +102,7 @@ There are 3 primary sources of the data used in training this model:
   ![results](images/results/mae.png)
   
 ## David Pinsky - Data Visualization Dashboard
-*A Tableau Public Visualization of the data can be found [here](CHANGE THIS ONCE ITS UPLOADED), or downloaded [here](redfin_training_analysis.twbx).*
+*A Tableau Public Visualization of the data can be found [here](https://public.tableau.com/app/profile/nathan.andrew.tompkins/viz/redfin_training_analysis/Story1?publish=yes), or downloaded [here](redfin_training_analysis.twbx).*
 
 The visualizations within the Tableau Public dashboard are desinged to illustrate the full Redfin-extracted dataset as well as our compare it to our cleaned_data.csv.
 
