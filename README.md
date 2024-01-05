@@ -1,7 +1,22 @@
-# Property_Value_NN_Estimator
+# nn_property_value_estimator 
+### Predicting Property Values by Training Neural Networks.
 
 ## Project Overview
+<img src="images/redfin.png" align="right" width="50%" height="50%"/>
+
 The development process of this neural network model included 4 team members, credited below. This model was trained to predict the value of **single family homes in Dallas, TX** by evaluating features such as 1) number of bedrooms, 2) square footage, 3) zip code, etc, features gathered from [Redfin.com](https://www.redfin.com). The model is available for download in the [models](models/) directory as an .H5 or .Keras filetype.
+
+*Note:*<br>
+*This project was developed in collaboration as part of the 2023 UCF Data Analytics and Visualization Bootcamp.*
+
+### Results
+- Model metrics
+  - **loss: 9.46** Indicates that predicted housing prices are within ~9.4% of the target values. ![results](images/results/epoch_100.png)
+  - **mae: 40564.8964**. Indicates at first glance that our data, on average, is off by ~40.5k. *This is due to the high variance and low number of datapoints of houses above $1 million*. ![results](images/results/mae.png)
+
+- Accuracy - Predictions were, on average, within 9.4% of the target estimated value.<br> ![results](images/results/actual_v_pred.png)
+- Predictions Distribution - Illustrates our model follows the same price/sq.ft. trend as actuals. <br> ![results](images/results/results.png)
+- Loss = Accuracy. Within 9.4% of Actual Price. <br> ![results](images/results/epoch_100.png)
 
 ### Team Members: <br> 
 **Martin Bedino**: GitHub: [mbedino99](https://github.com/mbedino99) <br>
@@ -9,39 +24,39 @@ The development process of this neural network model included 4 team members, cr
 **Kaylee Patterson**: GitHub: [kayleepat](https://github.com/kayleepat) <br>
 **Nathan-Andrew Tompkins (self)**: GitHub: [najtompkins](https://github.com/najtompkins) <br>
 
-*Note:*<br>
-*This project was developed in collaboration as part of the 2023 UCF Data Analytics and Visualization Bootcamp.*
-
-### Results
-#### PULL IMAGES FROM THE GOOGLE SLIDES FILE
-##### https://docs.google.com/presentation/d/1ZFXWJKJN3-PoUnpL__Gys1JQMzztjaONkHsKJBH1v6c/edit#slide=id.g1ec42e7cc60_2_2
-
 ## Sourcing and Cleaning
 There are 3 primary sources of the data used in training this model:
   1. List of Dallas addresses used in API call: [Dallas Central Appraisal District](https://www.dallascad.org/)
       * *Note* The list of cleaned addresses can be found in the [data](data/addresses_cleaned.csv) directory as cleaned: 
-  2. Data included API calls to: [Redfin.com](redfin.com)
-  3. The [Redfin API Wrapper](https://github.com/reteps/redfin) developed by GitHub user "[reteps](https://github.com/reteps)"
+  2. [Redfin.com](redfin.com)
+  3. [Redfin API Wrapper](https://github.com/reteps/redfin) developed by GitHub user "[reteps](https://github.com/reteps)"
 
 ## Kaylee Patterson - Data Aquisition and Processing 
   ### Data Aquisition
-  - This model is trained on Redfin housing data for a list of addresses located in Dallas, TX. These were sourced from the [Dallas Central Appraisal District website](https://www.dallascad.org/). This downloadable .csv was then cleaned to remove any rows with empty values. This cleaned dataset can be found [here](data/addresses_cleaned.csv).
-  - All house feature data was obtained from [Redfin](redfin.com) through the Redfin Wrapper. The addresses from DCAD were reformatted to be used with a wrapper to access Redfin's unlisted API. (cleaning code [here](./code/ETL_addresses.ipynb).) This wrapper allowed access to the data without violating Redfin's terms of use against webscraping.
-  - The code to pull this data is located in in the [code](./code/) directory. ([File located here](./code/redfin_data_collector.ipynb))
-      - *Due to the extremely long length of time it took to pull data using this wrapper method, these API calls were  done in batches of 10,000 addresses. These batches were exported as .csv files to the data folder and then concatenated into the [combined_file.csv](./data/combined_file.csv).*
+  - This model is trained on Redfin housing data pulled using a list of addresses located in Dallas, TX. These addresses were sourced from the [Dallas Central Appraisal District website](https://www.dallascad.org/). This downloadable .csv was then cleaned to remove any rows with empty values. This cleaned dataset can be found [here](data/addresses_cleaned.csv).
+  - All other feature data was obtained from [Redfin](redfin.com) through the Redfin Wrapper cited above. The addresses from DCAD were reformatted to be used with a wrapper to access Redfin's unlisted API. (cleaning code [here](./code/ETL_addresses.ipynb).) This wrapper allowed access to the data without violating Redfin's terms of use against webscraping. (below is an example of the wrapper's code) <br>
+  ![wrapper](images/Kaylee/wrapper_code.png) <br>
+  ![wrapper](images/Kaylee/wrapper_code_2.png)
+  - The code that pulls this data is located in in the [code](./code/) directory. ([File located here](./code/redfin_data_collector.ipynb))
+    ![wrapper](images/Kaylee/api_calls_code.png)
+      - *Due to the extreme length of time it took to pull data using this wrapper method these API calls were  done in batches of 10,000 addresses. These were exported as .csv files to the data folder and then concatenated into the [combined_file.csv](./data/combined_file.csv).*
       - *Despite procurring a list of over 600,000 addresses, the time constraints of this project permitted data extraction for only around 40,000 homes. (Though this was more than enough to train the model.)*
     
 ## Martin - Statistical Analysis of Training Data
-  - The training data extracted from the Redfin Wrapper was analyzed so that we may better understand how to process the data further before training our model on it.
-    - We used analytical and visualization tools such as MatplotLib, Seaborn, SKLearn, ScyPi to better understand the shape and scope of our data. 
+  - Training data extracted from the Redin Wrapper was analyzed so that we could better understand how to process the data further before training our model on it.
+    - We used analytical and visualization tools such as MatplotLib, Seaborn, SKLearn, ScyPi to better understand the shape and scope of the data. 
     - We performed statisatical analysis to understand the correlations between the variables in our data and our target variable of home prices.
     - Our data was cleaned in order to better account for outliers, visualize upper and lower bounds, as well as test for normality
-  - Performed a preliminary OLS regression of the coefficients in order to visualize the validity of our data for further tuning.
+  - We performed a preliminary OLS regression of the coefficients in order to visualize the validity of our data for further tuning.
     - The data was tested to ensure it clears the classical assumptions.
       - We found a small but possible instance of autocorrelation
       - We found the data to be homoskedastic
       - There is no perfect linear relation between home prices and our explanatory variables
   - From this quick analysis we find a adjusted. r^2 value of 0.678, meaning there is room for improvement of the model through hyperparameter tuning.
+   <br> ![ols](images/Martin/Screenshot%202024-01-03%20at%202.42.27 PM.png)
+  <br> ![ols](images/Martin/martin_2.png)
+  <br> ![ols](images/Martin/martin_3.png)
+ 
 
 ## Nathan-Andrew Tompkins - Model Architecture and Tuning
   ### Code: [Here](code/nn_model_training.ipynb), Keras Model: [Here](models/redfin_property_estimator.keras)
@@ -51,24 +66,67 @@ There are 3 primary sources of the data used in training this model:
   - The output layer was designed to have a single output, which would be the predicted house price.
   - As this was not a classic example of a model designed to cluster or classify data and instead predict a numerical value close to the actual value, it became neccesary to find a proper loss and evaluation method.
     - Our loss function was the "Mean Absolute Percentage Error" function. This allowed for our model to test the data's accuracy within a certain percentage of the target instead of exacting values.
-    - The MAE metric was used to determine the average value that the model was off in it's pricing estimation. (Note that this value is greater than expected due to the high variance of housing prices above 2.5 million.)
+    - The MAE metric was used to determine the average value that the model was off in it's pricing estimation. (Note that this value is greater than expected due to the high variance of housing prices above 2.5 million.) <br>
+    <br>   ![metrics](images/Nathan-Andrew/valuation_metrics.png)
   - The tuner-hyperband itself is initialized using the tuning-function as the first parameter. The "objective" here is "val_loss" as the primary function of this model is to reduce the percentage error between predicted and target vales. Likewise, the model callback/checkpoint "mode" variable is looking for the minimal value of the loss function to determine which tested model performs the best.
 
   ### Final model structure
+
+  <img src="images/Nathan-Andrew/nn_design.png" align="right"/>
+  <img src="images/Nathan-Andrew/nn_structure.png" align="right"/>
+
   - Due to unexpected errors when using the best model determined by the keras-tuner, our final model uses only a few of those specifications. In the end, our model is Sequential and comprised of 4 layers:
     1. Input layer using the "relu" activaiton function
     2. Two hidden layers with 11 and 13 neurons respectively using the "linear" activation function.
     3. Output layer using the "linear" function.
    
   ### Model Results
-  - **loss: 9.2879** Indicates that predicted housing prices are within ~9.3% of the target values.
-  - **mae: 38710.2656**. Indicates that our data, on average, is off by ~38k. Again this is due to the high variance and low number of datapoints of houses above 2.5$ million.
+
+  - **loss: 9.46** Indicates that predicted housing prices are within ~9.4% of the target values. ![results](images/results/epoch_100.png)
+  - **mae: 40564.8964**. Indicates at first glance that our data, on average, is off by ~40.5k. *Again, this is due to the high variance and low number of datapoints of houses above $1 million*. ![results](images/results/mae.png)
   
 ## David Pinsky - Data Visualization Dashboard
-A Tableau Public Visualization of the data can be found [here](https://public.tableau.com/shared/XTXD43674?:display_count=n&:origin=viz_share_link), or downloaded [here](redfin_training_analysis.twbx)
+*A Tableau Public Visualization of the data can be found [here](CHANGE THIS ONCE ITS UPLOADED), or downloaded [here](redfin_training_analysis.twbx).*
 
-- The visualizations within the Tableau Public dashboard are desinged to illustrate the full Redfin-extracted dataset as well as our compare it to our cleaned_data.csv.
-- Our model's performance. 
-- Visualizations include price distribution maps, 
-- And datapoints by ZIP Code.
+The visualizations within the Tableau Public dashboard are desinged to illustrate the full Redfin-extracted dataset as well as our compare it to our cleaned_data.csv.
 
+### Our model's performance. 
+
+The visualizations below illustrate the accuracy of our pricing model. While there are small differences the key takeaway is that these images look largely the same, meaning that our model predicted price-ranges in a substantially accurate way.
+
+### Results
+Using size and color to illustrate the prices of the homes, we can see that the while there are small differences between the actual and predicted maps, our model was trained with a satisfying degree of accuracy so that at these look largely the same.
+
+Actual Prices
+![avp](images/David/actual_view.png)
+Predicted Prices
+![avp](images/David/predicted_view.png)
+
+### Data Cleaning
+Much of the data taken from Redfin included features for houses that significantly skewed some of our features. These multi-million dollar mansions included large interior and lot sizes, as well as over-represented bathroom and bedroom counts in the data. As these mansions were not in the scope of our model we elimented them from the training dataset, allowing for greater stability and accuracy in the single-family-home predictions model we devloped.
+![avp](images/David/cleaned_data.png)
+
+### Zip Code API Pulls.
+Due to the limits of this project of our data is not as securly balanced as we would have otherwise striven for. As you can see below a vast majority of addresses we accessed and trained on were pulled from the northeast districts of Dallas, or other singlulary districts around the region. Nearly all were represented, but the model is weighted heavily toward home prices in those areas.
+![avp](images/David/zip_distribution.png)
+
+### Actual vs. Predicted
+Above the line we can see the acutal house values and below the line we can see the predicted values from our model. We can see that houses below 800k are predicted with a high degree of accuracy and those above, where training data was not as available, were predicted with a lower degree of accuracy. This is the reason for the MAE value of 40564.8964. At first this metric would indicate that the average value of error in predictions is around 40K, but that number is drastically skewed due to houses with higher values in this data set. The 9.4% accuracy is the greater metric to evaluate this model due to this oddity in the MAE.
+![avp](images/David/actual_v_pred.png)
+
+### Home Value Distribution - Actual
+The home value distribution for all of the API data followed a normal distribution, peaking at with over 1,500 home in the 270k price bracket.
+![avp](images/David/price_distribution.png)
+
+### Home Value Distribution - Predicted
+The predicted home value distribution also followes a normal distribution.
+![avp](images/David/sample_distribution.png)
+
+### Proper Price Weight
+We can see that our model properly weighted the relationship between the two price/sq.ft interior features.
+![avp](images/David/proper_price_weight.png)
+
+
+# End of ReadMe.
+
+### Thank you from our team!
