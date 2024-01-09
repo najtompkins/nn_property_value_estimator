@@ -3,7 +3,7 @@
 ### Predicting Property Values by Training Neural Networks.
 Download the Keras Model [Here](models/redfin_property_estimator.keras)
 
-## Project Repository Located: [Here](https://github.com/najtompkins/crime-exploration-dashboard)
+## Project Repository Located: [Here](https://github.com/najtompkins/nn_property_value_estimator)
 ## Project Overview
 <img src="images/redfin.png" align="right" width="50%" height="50%"/>
 
